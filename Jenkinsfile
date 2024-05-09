@@ -1,4 +1,4 @@
-pipeline {
+pipeline { 
     agent any
     stages {
 
@@ -16,6 +16,20 @@ pipeline {
                 echo 'integration tests'
                 echo 'run integration tests using TestNG'
             }
+            post {
+                success {
+                    mail to: 'aaaraunaq@gmail.com',
+                    subject: 'Tests Status Email',
+                    body: 'Tests were successful'
+                    attachLog: true
+                }
+                fail {
+                    mail to: 'aaaraunaq@gmail.com',
+                    subject: 'Tests Status Email',
+                    body: 'Tests failed'
+                    attachLog: true
+                }
+            }
         }
 
         stage('Code Analysis') {
@@ -27,6 +41,20 @@ pipeline {
         stage('Secuity Scan') {
             steps {
                 echo 'perform security scan on the code using OWASP ZAP to identify any vulnerabilities'
+            }
+            post {
+                success {
+                    mail to: 'aaaraunaq@gmail.com',
+                    subject: 'Secuity Scan Status Email',
+                    body: 'Security Scan successful'
+                    attachLog: true
+                }
+                fail {
+                    mail to: 'aaaraunaq@gmail.com'
+                    subject: 'Security Scan Status Email',
+                    body: 'Security Scan failed'
+                    attachLog: true
+                }
             }
         }
 
@@ -44,7 +72,7 @@ pipeline {
 
         stage('Deploy to Production') {
             steps {
-                echo "Deployed to AWS EC2 production server"
+                echo 'Deployed to AWS EC2 production server'
             }
         }
     }
