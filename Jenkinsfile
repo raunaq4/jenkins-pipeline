@@ -23,7 +23,7 @@ pipeline {
                     body: 'Tests were successful',
                     attachLog: true
                 }
-                fail {
+                failure {
                     mail to: 'aaaraunaq@gmail.com',
                     subject: 'Tests Status Email',
                     body: 'Tests failed',
@@ -49,7 +49,7 @@ pipeline {
                     body: 'Security Scan successful',
                     attachLog: true
                 }
-                fail {
+                failure {
                     mail to: 'aaaraunaq@gmail.com',
                     subject: 'Security Scan Status Email',
                     body: 'Security Scan failed',
