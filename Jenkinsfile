@@ -20,13 +20,13 @@ pipeline {
                 success {
                     mail to: 'aaaraunaq@gmail.com',
                     subject: 'Tests Status Email',
-                    body: 'Tests were successful'
+                    body: 'Tests were successful',
                     attachLog: true
                 }
                 fail {
                     mail to: 'aaaraunaq@gmail.com',
                     subject: 'Tests Status Email',
-                    body: 'Tests failed'
+                    body: 'Tests failed',
                     attachLog: true
                 }
             }
@@ -46,13 +46,13 @@ pipeline {
                 success {
                     mail to: 'aaaraunaq@gmail.com',
                     subject: 'Secuity Scan Status Email',
-                    body: 'Security Scan successful'
+                    body: 'Security Scan successful',
                     attachLog: true
                 }
                 fail {
                     mail to: 'aaaraunaq@gmail.com'
                     subject: 'Security Scan Status Email',
-                    body: 'Security Scan failed'
+                    body: 'Security Scan failed',
                     attachLog: true
                 }
             }
