@@ -50,7 +50,7 @@ pipeline {
                     attachLog: true
                 }
                 fail {
-                    mail to: 'aaaraunaq@gmail.com'
+                    mail to: 'aaaraunaq@gmail.com',
                     subject: 'Security Scan Status Email',
                     body: 'Security Scan failed',
                     attachLog: true
