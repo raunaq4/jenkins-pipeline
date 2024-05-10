@@ -17,17 +17,14 @@ pipeline {
                 echo 'run integration tests using TestNG'
             }
             post {
-                success {
-                    mail to: 'aaaraunaq@gmail.com',
-                    subject: 'Tests Status Email',
-                    body: 'Tests were successful',
-                    attachLog: true
-                }
-                failure {
-                    mail to: 'aaaraunaq@gmail.com',
-                    subject: 'Tests Status Email',
-                    body: 'Tests failed',
-                    attachLog: true
+                always {
+                    emailext (
+                        to: 'aaaraunaq@gmail.com',
+                        subject: "Jenkins Build: ${currentBuild.fullDisplayName}",
+                        body: """<p>Stage 'Unit and Integration Tests' completed with status ${currentBuild.result}</p>
+                            <p>Check console output at ${env.BUILD_URL} to view the results.</p>""",
+                        attachLog: true
+                    ) 
                 }
             }
         }
@@ -43,17 +40,14 @@ pipeline {
                 echo 'perform security scan on the code using OWASP ZAP to identify any vulnerabilities'
             }
             post {
-                success {
-                    mail to: 'aaaraunaq@gmail.com',
-                    subject: 'Secuity Scan Status Email',
-                    body: 'Security Scan successful',
-                    attachLog: true
-                }
-                failure {
-                    mail to: 'aaaraunaq@gmail.com',
-                    subject: 'Security Scan Status Email',
-                    body: 'Security Scan failed',
-                    attachLog: true
+                always {
+                    emailext (
+                        to: 'aaaraunaq@gmail.com',
+                        subject: "Jenkins Build: ${currentBuild.fullDisplayName}",
+                        body: """<p>Stage 'Security Scan' completed with status ${currentBuild.result}</p>
+                            <p>Check console output at ${env.BUILD_URL} to view the results.</p>""",
+                        attachLog: true
+                    ) 
                 }
             }
         }
