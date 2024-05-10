@@ -6,6 +6,7 @@ pipeline {
             steps {
                 echo 'compile and package code'
                 echo 'automate the build using Maven'
+                echo 'automtion is exciting!!'
             }
         }
 
